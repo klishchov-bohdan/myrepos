@@ -33,6 +33,7 @@ button {
     font-size: 14pt;
     background-color: lemonchiffon;
     border-radius: 10px;
+    border-color: coral;
 }
 
 button:hover {
