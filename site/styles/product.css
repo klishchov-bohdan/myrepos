@@ -1,0 +1,60 @@
+body, html {
+    margin: 0px;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+}
+
+.prod-prop {
+    background-color: cornsilk;
+    border-right: 3px double brown;
+}
+
+.prod-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.prod-info {
+    background-color: cornsilk;
+}
+
+.description {
+    font-size: 14pt;
+}
+
+.comments {
+    margin-top: 15px;
+    border-top: 3px double brown;
+}
+
+.user {
+    color: blue;
+}
+
+.comment {
+    font-size: 14pt;
+}
+
+header {
+    text-align: center;
+    background-color: wheat;
+    border-bottom: 3px solid chocolate;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 7%;
+}
+
+footer {
+    text-align: center;
+    background-color: wheat;
+    border-top: 3px solid chocolate;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 7%;
+}
