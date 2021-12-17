@@ -12,11 +12,11 @@ type SupplierFileRepository struct {
 }
 
 func (sfr *SupplierFileRepository) GetAll() (suppliers []*models.Supplier, err error) {
-	supplierFolder, err := ioutil.ReadDir("./datastore/files/suppliers/")
+	supplierRepo, err := ioutil.ReadDir("./datastore/files/suppliers/")
 	if err != nil {
 		return nil, err
 	}
-	for _, fileInfo := range supplierFolder {
+	for _, fileInfo := range supplierRepo {
 		file, err := os.Open("./datastore/files/suppliers/" + fileInfo.Name())
 		if err != nil {
 			return nil, err

@@ -2,9 +2,8 @@ package filesystem
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
-	"log"
+	"io/ioutil"
 	"mysite/repositories/models"
 	"os"
 )
@@ -12,30 +11,37 @@ import (
 type UserFileRepository struct {
 }
 
-func (ufr *UserFileRepository) GetByEmail(Email string) (user *models.User) {
-	var data []byte
-	file, err := os.Open("./datastore/files/users/user_1.json")
+func (ufr *UserFileRepository) GetByEmail(Email string) (user *models.User, err error) {
+	userRepo, err := ioutil.ReadDir("./datastore/files/users/")
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
-	defer file.Close()
-
-	for {
-		chunk := make([]byte, 64)
-		n, err := file.Read(chunk)
-		if err == io.EOF {
-			break
-		}
+	for _, fileInfo := range userRepo {
+		file, err := os.Open("./datastore/files/users/" + fileInfo.Name())
 		if err != nil {
-			log.Fatal(err)
+			return nil, err
 		}
-		data = append(data, chunk[:n]...)
+		defer file.Close()
+		user := &models.User{}
+		var data []byte
+		for {
+			chunk := make([]byte, 64)
+			n, err := file.Read(chunk)
+			if err == io.EOF {
+				break
+			}
+			if err != nil {
+				return nil, err
+			}
+			data = append(data, chunk[:n]...)
+		}
+		err = json.Unmarshal(data, &user)
+		if err != nil {
+			return nil, err
+		}
+		if user.Email == Email {
+			return user, nil
+		}
 	}
-	fmt.Println(data)
-	err = json.Unmarshal(data, &user)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return user
+	return nil, nil
 }

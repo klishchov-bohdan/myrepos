@@ -9,3 +9,7 @@ type UserRepositories interface {
 type SupplierRepositories interface {
 	GetAll() ([]*models.Supplier, error)
 }
+
+type ProductsRepositories interface {
+	GetByCategory(category string) ([]*models.Product, error)
+}
