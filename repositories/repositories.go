@@ -4,6 +4,7 @@ import "mysite/repositories/models"
 
 type UserRepositories interface {
 	GetByEmail(email string) *models.User
+	Create(user *models.User) (*models.User, error)
 }
 
 type SupplierRepositories interface {
