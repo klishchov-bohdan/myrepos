@@ -13,3 +13,7 @@ type SupplierRepositories interface {
 type ProductsRepositories interface {
 	GetByCategory(category string) ([]*models.Product, error)
 }
+
+type OrdersRepositories interface {
+	GetByID(ID uint64) (*models.Order, error)
+}

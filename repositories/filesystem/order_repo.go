@@ -8,16 +8,16 @@ import (
 	"os"
 )
 
-type UserFileRepository struct {
+type OrderFileRepository struct {
 }
 
-func (ufr *UserFileRepository) GetByEmail(Email string) (user *models.User, err error) {
-	userRepo, err := ioutil.ReadDir("./datastore/files/users/")
+func (ofr *OrderFileRepository) GetByID(id uint64) (order *models.Order, err error) {
+	orderRepo, err := ioutil.ReadDir("./datastore/files/orders/")
 	if err != nil {
 		return nil, err
 	}
-	for _, fileInfo := range userRepo {
-		file, err := os.Open("./datastore/files/users/" + fileInfo.Name())
+	for _, fileInfo := range orderRepo {
+		file, err := os.Open("./datastore/files/orders/" + fileInfo.Name())
 		if err != nil {
 			return nil, err
 		}
@@ -34,12 +34,12 @@ func (ufr *UserFileRepository) GetByEmail(Email string) (user *models.User, err 
 			}
 			data = append(data, chunk[:n]...)
 		}
-		err = json.Unmarshal(data, &user)
+		err = json.Unmarshal(data, &order)
 		if err != nil {
 			return nil, err
 		}
-		if user.Email == Email {
-			return user, nil
+		if order.ID == id {
+			return order, nil
 		}
 	}
 	return nil, nil

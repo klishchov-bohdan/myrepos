@@ -31,4 +31,11 @@ func main() {
 	for _, product := range products {
 		fmt.Println(product)
 	}
+
+	or := &filesystem.OrderFileRepository{}
+	order, err := or.GetByID(1)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(order)
 }
