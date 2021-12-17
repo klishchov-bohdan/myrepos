@@ -12,9 +12,9 @@ import (
 type UserFileRepository struct {
 }
 
-func (ufr UserFileRepository) GetByEmail(Email string) (user models.User) {
+func (ufr *UserFileRepository) GetByEmail(Email string) (user *models.User) {
 	var data []byte
-	file, err := os.Open("./datastore/files/user_1.json")
+	file, err := os.Open("./datastore/files/users/user_1.json")
 	if err != nil {
 		log.Fatal(err)
 	}
