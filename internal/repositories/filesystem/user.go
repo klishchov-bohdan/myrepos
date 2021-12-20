@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"mysite/repositories/models"
+	"mysite/internal/models"
 	"os"
 )
 
@@ -14,12 +14,12 @@ type UserFileRepository struct {
 }
 
 func (ufr *UserFileRepository) GetByEmail(email string) (user *models.User, err error) {
-	userRepo, err := ioutil.ReadDir("./datastore/files/users/")
+	userRepo, err := ioutil.ReadDir("./internal/datastore/files/users/")
 	if err != nil {
 		return nil, err
 	}
 	for _, fileInfo := range userRepo {
-		file, err := os.Open("./datastore/files/users/" + fileInfo.Name())
+		file, err := os.Open("./internal/datastore/files/users/" + fileInfo.Name())
 		if err != nil {
 			return nil, err
 		}
@@ -48,12 +48,12 @@ func (ufr *UserFileRepository) GetByEmail(email string) (user *models.User, err 
 }
 
 func (ufr *UserFileRepository) Create(user *models.User) (createdUser *models.User, err error) {
-	userRepo, err := ioutil.ReadDir("./datastore/files/users/")
+	userRepo, err := ioutil.ReadDir("./internal/datastore/files/users/")
 	if err != nil {
 		return nil, err
 	}
 	for _, fileInfo := range userRepo {
-		file, err := os.Open("./datastore/files/users/" + fileInfo.Name())
+		file, err := os.Open("./internal/datastore/files/users/" + fileInfo.Name())
 		if err != nil {
 			return nil, err
 		}
@@ -80,7 +80,7 @@ func (ufr *UserFileRepository) Create(user *models.User) (createdUser *models.Us
 		}
 	}
 	fileName := "user_" + fmt.Sprint(len(userRepo)+1) + ".json"
-	file, err := os.Create("./datastore/files/users/" + fileName)
+	file, err := os.Create("./internal/datastore/files/users/" + fileName)
 	if err != nil {
 		return nil, err
 	}

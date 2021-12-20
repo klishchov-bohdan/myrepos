@@ -1,6 +1,6 @@
 package database
 
-import "mysite/repositories/models"
+import "mysite/internal/models"
 
 type UserDBRepository struct{}
 

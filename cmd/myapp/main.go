@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"log"
-	"mysite/repositories/filesystem"
-	"mysite/repositories/models"
+	"mysite/internal/models"
+	"mysite/internal/repositories/filesystem"
 )
 
 func main() {
@@ -31,7 +31,7 @@ func main() {
 
 	createdUser, err := ur.Create(usr)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	fmt.Println(createdUser)
 

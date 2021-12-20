@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
-	"mysite/repositories/models"
+	"mysite/internal/models"
 	"os"
 )
 
@@ -12,12 +12,12 @@ type SupplierFileRepository struct {
 }
 
 func (sfr *SupplierFileRepository) GetAll() (suppliers []*models.Supplier, err error) {
-	supplierRepo, err := ioutil.ReadDir("./datastore/files/suppliers/")
+	supplierRepo, err := ioutil.ReadDir("./internal/datastore/files/suppliers/")
 	if err != nil {
 		return nil, err
 	}
 	for _, fileInfo := range supplierRepo {
-		file, err := os.Open("./datastore/files/suppliers/" + fileInfo.Name())
+		file, err := os.Open("./internal/datastore/files/suppliers/" + fileInfo.Name())
 		if err != nil {
 			return nil, err
 		}

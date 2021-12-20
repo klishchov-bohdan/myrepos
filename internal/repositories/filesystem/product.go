@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
-	"mysite/repositories/models"
+	"mysite/internal/models"
 	"os"
 )
 
@@ -12,12 +12,12 @@ type ProductFileRepository struct {
 }
 
 func (pfr *ProductFileRepository) GetByCategory(category string) (products []*models.Product, err error) {
-	productRepo, err := ioutil.ReadDir("./datastore/files/products/")
+	productRepo, err := ioutil.ReadDir("./internal/datastore/files/products/")
 	if err != nil {
 		return nil, err
 	}
 	for _, fileInfo := range productRepo {
-		file, err := os.Open("./datastore/files/products/" + fileInfo.Name())
+		file, err := os.Open("./internal/datastore/files/products/" + fileInfo.Name())
 		if err != nil {
 			return nil, err
 		}
