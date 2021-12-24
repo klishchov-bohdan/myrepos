@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/klishchov-bohdan/myrepos/internal/models"
+	"github.com/klishchov-bohdan/myrepos/internal/repositories/filesystem"
 	"log"
-	"mysite/internal/models"
-	"mysite/internal/repositories/filesystem"
 )
 
 func main() {

@@ -1,6 +1,6 @@
 package repositories
 
-import "mysite/internal/models"
+import "github.com/klishchov-bohdan/myrepos/internal/models"
 
 type UserRepositories interface {
 	GetByEmail(email string) *models.User

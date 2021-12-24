@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/klishchov-bohdan/myrepos/internal/models"
 	"io"
 	"io/ioutil"
-	"mysite/internal/models"
 	"os"
 )
 

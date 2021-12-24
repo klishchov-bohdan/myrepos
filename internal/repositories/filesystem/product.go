@@ -2,9 +2,9 @@ package filesystem
 
 import (
 	"encoding/json"
+	"github.com/klishchov-bohdan/myrepos/internal/models"
 	"io"
 	"io/ioutil"
-	"mysite/internal/models"
 	"os"
 )
 
