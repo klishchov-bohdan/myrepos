@@ -16,6 +16,8 @@ func main() {
 	service := services.New(repo)
 	routes := rts.New(service)
 	http.HandleFunc("/login", routes.Login)
+	http.HandleFunc("/registration", routes.Registration)
+	http.HandleFunc("/refresh", routes.Refresh)
 	http.HandleFunc("/profile", routes.Profile)
 	//http.HandleFunc("/refresh", routes.Refresh)
 	log.Fatal(http.ListenAndServe(":8080", nil))
