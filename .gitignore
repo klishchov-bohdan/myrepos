@@ -1,5 +1,4 @@
 .vscode/
 .idea/
-vendor/
 logs/
 ./config/.env
