@@ -3,8 +3,9 @@ package repositories
 import "github.com/klishchov-bohdan/myrepos/internal/models"
 
 type UserRepositories interface {
-	GetByEmail(email string) *models.User
+	GetByEmail(email string) (user *models.User, err error)
 	Create(user *models.User) (*models.User, error)
+	GetByID(id int) (user *models.User, err error)
 }
 
 type SupplierRepositories interface {

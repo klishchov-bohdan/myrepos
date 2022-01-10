@@ -2,12 +2,13 @@ package services
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/joho/godotenv"
 	"github.com/klishchov-bohdan/myrepos/internal/middleware"
 	"github.com/klishchov-bohdan/myrepos/internal/models"
 	"github.com/klishchov-bohdan/myrepos/internal/models/login"
 	"github.com/klishchov-bohdan/myrepos/internal/models/registration"
-	"github.com/klishchov-bohdan/myrepos/internal/repositories/filesystem"
+	"github.com/klishchov-bohdan/myrepos/internal/repositories"
 	"github.com/klishchov-bohdan/myrepos/pkg/token"
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
@@ -16,10 +17,10 @@ import (
 )
 
 type Service struct {
-	User *filesystem.UserFileRepository
+	User repositories.UserRepositories
 }
 
-func New(UFRepo *filesystem.UserFileRepository) *Service {
+func New(UFRepo repositories.UserRepositories) *Service {
 	return &Service{
 		User: UFRepo,
 	}
@@ -94,6 +95,7 @@ func (service *Service) Registration(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		user, err := service.User.GetByEmail(req.Email)
+		fmt.Println(err)
 		if err != nil {
 			http.Error(w, "invalid credentials", http.StatusUnauthorized)
 			return
